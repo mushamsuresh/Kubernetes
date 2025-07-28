@@ -31,23 +31,6 @@ and how Kubernetes helps
 | 🗺️ **Responsibilities** | - Scheduling pods<br>- Maintaining cluster state<br>- Managing nodes<br>- Handling API requests | - Running containers<br>- Reporting status<br>- Following instructions from master |
 | 📡 **Communication**     | Exposes Kubernetes API (kubectl talks to this)                                                  | Listens to instructions from master (via kubelet)                                  |
 
-🧩 Components Explained:
-✅ Master Node Components:
-API Server – Entry point for all requests (kubectl communicates with it).
-
-Scheduler – Decides which node a pod should run on.
-
-Controller Manager – Monitors cluster state and makes changes as needed.
-
-etcd – Key-value store for cluster data (like a database for cluster state).
-
-✅ Worker Node Components:
-Kubelet – Agent on each worker that talks to the master and runs containers.
-
-Kube-proxy – Manages networking and load balancing for services.
-
-Container Runtime – Runs the actual containers (Docker, containerd, CRI-O, etc.).
-
 🔄 Interaction Diagram (Text-based)
 User → kubectl → API Server (Master)
                       ↓
@@ -56,5 +39,168 @@ User → kubectl → API Server (Master)
           Sends instructions to → Worker Nodes
                       ↓
               Worker runs Pods via Kubelet
+# 🐳 What is a Container Runtime?
+
+A **container runtime** is the low-level software responsible for running containers on a host system.
+
+It:
+- **Downloads** container images
+- **Unpacks** them
+- **Runs** them in isolated environments (containers)
+- **Manages** the container lifecycle (start, stop, restart)
+
+---
+
+## ⚙️ Container Runtime in Kubernetes
+
+In Kubernetes, the container runtime is used by the **worker nodes** to run your pods.  
+The component responsible for this communication is the **kubelet**.
+
+---
+
+## 🔧 Common Container Runtimes
+
+| Runtime      | Description                                                                 |
+|--------------|-----------------------------------------------------------------------------|
+| **Docker**   | Originally the most common runtime; now split into separate components      |
+| **containerd** | Lightweight, industry-standard runtime (used under Docker)               |
+| **CRI-O**    | Kubernetes-native container runtime using Open Container Initiative (OCI)   |
+| **runc**     | Low-level runtime that actually spawns and runs containers (used by Docker and containerd) |
+
+> 🔸 Since Kubernetes 1.20+, **Docker is deprecated** as a runtime. Kubernetes now uses **containerd** or **CRI-O**.
+
+---
+
+## 📌 Runtime Flow in Kubernetes
+
+Pod Spec → Kubelet → CRI (Container Runtime Interface) → Container Runtime (e.g., containerd) → runc → Container
+
+# 🧠 Kubernetes Master Node Components (Control Plane)
+
+The **Master Node**, also called the **Control Plane**, is responsible for managing the entire Kubernetes cluster. It makes global decisions (e.g., scheduling), maintains cluster state, and handles communication between components.
+
+---
+
+## 🧩 Core Components of Master Node
+
+---
+
+### 1. 📡 API Server (`kube-apiserver`)
+- Acts as the **front-end** of the Kubernetes control plane.
+- Accepts REST API calls (e.g., from `kubectl`, UI, or other components).
+- Validates and processes requests.
+- All other components communicate through the API server.
+
+> 🔐 Authentication, authorization, and admission control are handled here.
+
+---
+
+### 2. 📅 Scheduler (`kube-scheduler`)
+- Watches for **newly created pods** with no assigned node.
+- Selects the **best node** for the pod based on:
+  - Resource availability
+  - Node selectors, taints/tolerations, affinity rules
+  - Custom policies
+
+> 🎯 Its goal is optimal placement of pods in the cluster.
+
+---
+
+### 3. 👮 Controller Manager (`kube-controller-manager`)
+- Runs **controllers** that monitor the cluster and enforce desired state.
+- Types of controllers:
+  - **Node Controller**: Manages node availability
+  - **Replication Controller**: Ensures correct number of pod replicas
+  - **Endpoint Controller**: Updates endpoint objects
+  - **Service Account Controller**, and more
+
+> ♻️ Reacts to state changes and makes necessary adjustments.
+
+---
+
+### 4. 🗄️ etcd (Key-Value Store)
+- A **distributed key-value store** for all cluster data.
+- Stores configuration, state, secrets, service info, etc.
+- Highly consistent and reliable
+
+> ⚠️ It's critical—if etcd is down, the cluster cannot be managed.
+
+---
+
+## 📝 Summary Table
+
+| Component             | Purpose                                                   |
+|-----------------------|-----------------------------------------------------------|
+| **API Server**        | Handles all requests and acts as the central communication hub |
+| **Scheduler**         | Assigns pods to the most suitable nodes                   |
+| **Controller Manager**| Runs controllers to maintain desired cluster state        |
+| **etcd**              | Stores all cluster data in a reliable key-value store     |
+
+---
+
+# ☸️ Kubernetes worker Node Components: Container Runtime, Kubelet, and Kube-Proxy
+
+In a Kubernetes **worker node**, three key components enable the node to run and manage containers effectively:
+
+---
+
+## 1. 🐳 Container Runtime
+
+### ✅ What it does:
+- Pulls container images from registries
+- Unpacks and runs containers
+- Isolates container environments
+- Manages lifecycle (start, stop, delete)
+
+### 🔧 Common Runtimes:
+| Runtime      | Description                                               |
+|--------------|-----------------------------------------------------------|
+| `containerd` | Lightweight runtime, now standard in Kubernetes            |
+| `CRI-O`      | Kubernetes-native runtime using CRI and OCI standards      |
+| `runc`       | Low-level runtime used by `containerd` and `CRI-O`         |
+| `Docker`     | Deprecated as of Kubernetes v1.20+, replaced by containerd |
+
+---
+
+## 2. 🔌 Kubelet
+
+### ✅ What it does:
+- Main **node agent** on each worker node
+- Communicates with the **Kubernetes API Server**
+- Watches for **PodSpecs** assigned to the node
+- Starts/stops containers using the container runtime
+- Monitors the health of pods and containers
+
+### 🔁 Responsibilities:
+- Ensures containers are running in pods
+- Sends status reports to the control plane
+- Syncs desired state (from API server) with actual state (on node)
+
+---
+
+## 3. 🌐 Kube-Proxy
+
+### ✅ What it does:
+- Maintains **network rules** on the node
+- Enables **service discovery** and **load balancing**
+- Forwards traffic to the correct pods based on IP/port rules
+
+### 🔁 Responsibilities:
+- Handles internal cluster networking
+- Implements **virtual IPs** for services
+- Uses iptables or IPVS to route traffic
+
+---
+
+## 📝 Summary Table
+
+| Component         | Role                                        | Runs On     | Key Functionality                                      |
+|------------------|---------------------------------------------|-------------|--------------------------------------------------------|
+| **Container Runtime** | Runs containers from images                   | Worker Node | Image download, container start/stop                  |
+| **Kubelet**           | Node agent that runs and monitors pods       | Worker Node | Talks to API server, manages containers               |
+| **Kube-Proxy**        | Handles networking and service routing       | Worker Node | Service discovery, traffic forwarding, load balancing |
+
+---
+
 
 ## IN kubernetes container is called pod
