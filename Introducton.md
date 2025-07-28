@@ -21,4 +21,40 @@ and how Kubernetes helps
 | Healing             | Manual restart         | Auto restart, self-healing            |
 | Deployment Strategy | Manual                 | Declarative with rollouts & rollbacks |
 
+☸️ Kubernetes Master vs Worker Nodes
+
+| Role                     | **Master Node (Control Plane)**                                                                 | **Worker Node (Data Plane)**                                                       |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| 🧠 **Purpose**           | Manages the cluster                                                                             | Runs your application workloads (containers/pods)                                  |
+| ⚙️ **Components**        | API server, scheduler, controller manager, etcd                                                 | kubelet, kube-proxy, container runtime (Docker/containerd)                         |
+| 📦 **Runs Pods?**        | No (except system pods)                                                                         | Yes, user application pods                                                         |
+| 🗺️ **Responsibilities** | - Scheduling pods<br>- Maintaining cluster state<br>- Managing nodes<br>- Handling API requests | - Running containers<br>- Reporting status<br>- Following instructions from master |
+| 📡 **Communication**     | Exposes Kubernetes API (kubectl talks to this)                                                  | Listens to instructions from master (via kubelet)                                  |
+
+🧩 Components Explained:
+✅ Master Node Components:
+API Server – Entry point for all requests (kubectl communicates with it).
+
+Scheduler – Decides which node a pod should run on.
+
+Controller Manager – Monitors cluster state and makes changes as needed.
+
+etcd – Key-value store for cluster data (like a database for cluster state).
+
+✅ Worker Node Components:
+Kubelet – Agent on each worker that talks to the master and runs containers.
+
+Kube-proxy – Manages networking and load balancing for services.
+
+Container Runtime – Runs the actual containers (Docker, containerd, CRI-O, etc.).
+
+🔄 Interaction Diagram (Text-based)
+User → kubectl → API Server (Master)
+                      ↓
+        Scheduler ← Controller Manager ← etcd
+                      ↓
+          Sends instructions to → Worker Nodes
+                      ↓
+              Worker runs Pods via Kubelet
+
 ## IN kubernetes container is called pod
