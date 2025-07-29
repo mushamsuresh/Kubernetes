@@ -12,7 +12,31 @@ In **Kubernetes**, the smallest deployable unit is **not a container**, but a **
 > A **Pod** is a wrapper around one or more containers, and it adds the orchestration features Kubernetes needs.
 
 ---
+# ☸️ What is a Pod in Kubernetes?
 
+---
+
+## 🧩 Definition
+
+A **Pod** is the **smallest and simplest unit in the Kubernetes object model** that you can create or deploy.
+
+> A Pod represents a **single instance of a running process** in your cluster.
+
+It can hold:
+- A **single container** (most common case)
+- **Multiple containers** that need to share resources (sidecar pattern)
+
+---
+
+## 🏗️ Structure of a Pod
+
+A Pod includes:
+- One or more containers
+- Shared storage volumes
+- Shared network namespace (same IP and port space)
+- Metadata and specifications
+
+---
 ## 📦 Difference Between Container and Pod
 
 | Feature             | **Container**                                     | **Pod**                                                             |
