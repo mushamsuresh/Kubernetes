@@ -13,3 +13,8 @@ kubectl rollout history deploy/web-frontend
 
 # Roll back to previous revision
 kubectl rollout undo deploy/web-frontend
+
+# kubectl command to create/update resources from a manifest or delete it:
+kubectl delete -f my-deployment.yaml
+
+
