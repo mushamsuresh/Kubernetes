@@ -125,6 +125,24 @@ In short: a Deployment lets you declare what you want running, and Kubernetes co
 - Maintains a stable set of replica Pods running at any given time.
 - Automatically replaces failed Pods to ensure availability.
 
+A **ReplicaSet** is a Kubernetes controller that ensures a **specified number of identical Pods are running at all times**.
+
+It is mostly used **indirectly through Deployments**, but can also be created and managed directly (not common in practice).
+
+---
+
+## 🎯 Purpose of a ReplicaSet
+
+- **Maintain availability**: If a Pod fails or is deleted, the ReplicaSet automatically replaces it.
+- **Ensure replica count**: If there are fewer Pods than desired, it creates new ones; if there are too many, it deletes extras.
+- **Load balancing**: Multiple Pods created by a ReplicaSet can be load-balanced behind a Service.
+
+📦 Use in Practice
+ReplicaSets are rarely used directly. Instead, they are:
+
+Automatically managed by Deployments.
+
+Used behind the scenes to support rolling updates and rollbacks.
 ## 4. **Service**
 - An abstraction that defines a logical set of Pods and a policy by which to access them.
 - Types include ClusterIP, NodePort, LoadBalancer, and ExternalName.
