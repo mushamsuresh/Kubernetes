@@ -135,3 +135,18 @@ Cluster
 | Node      | Physical/Virtual machine                      | Pods              |
 | Pod       | Smallest deployable unit (wraps container(s)) | Containers        |
 
+✅ 1. If you are using Google Cloud Shell
+You're already in Google Cloud, so you probably want to use GKE (Google Kubernetes Engine).
+
+# Authenticate to your GCP account (if not already)
+gcloud auth login
+
+# Set your project (optional)
+gcloud config set project <your-project-id>
+
+# List clusters
+gcloud container clusters list
+
+# Connect to an existing GKE cluster
+gcloud container clusters get-credentials <CLUSTER_NAME> --zone <ZONE>
+
