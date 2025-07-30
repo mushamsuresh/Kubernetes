@@ -187,9 +187,9 @@ Since Pods are **ephemeral** (can die and be replaced anytime), a Service ensure
 - Any traffic to the Service is load-balanced to the backend Pods.
 
 🔧 Example Use Cases
-_Frontend calls backend:_ A frontend Deployment talks to a backend Service.
-_Expose app to browser:_ Use a NodePort or LoadBalancer Service.
-_Microservice discovery:_ Services act as the internal DNS system in Kubernetes.
+- _Frontend calls backend:_ A frontend Deployment talks to a backend Service.
+- _Expose app to browser:_ Use a NodePort or LoadBalancer Service.
+- _Microservice discovery:_ Services act as the internal DNS system in Kubernetes.
 
 ## 5. **Ingress**
 - Manages external access to services, typically HTTP.
