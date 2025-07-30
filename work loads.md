@@ -1,3 +1,92 @@
+# Stateless vs Stateful Applications
+
+In the context of **Kubernetes**, and more broadly in distributed systems and cloud-native architecture, understanding the difference between **stateless** and **stateful** applications is crucial.
+
+---
+
+## 🟢 Stateless Applications
+
+A **stateless** application does **not retain any data or session state** between requests. Each request is treated as an independent transaction.
+
+### ✅ Characteristics:
+
+- No knowledge of past client requests.
+- Easy to scale horizontally (add more replicas).
+- Failure recovery is simple — any replica can serve any request.
+- Best suited for **web servers**, **REST APIs**, **frontend applications**.
+
+### 📦 Examples:
+- NGINX or Apache web servers
+- Node.js/Express APIs
+- Kubernetes Dashboard
+- Microservices that use external databases to store data
+
+### 🔁 Analogy:
+Think of a **vending machine** – you press buttons, it gives you items. It doesn’t remember what you bought before.
+
+---
+
+## 🔵 Stateful Applications
+
+A **stateful** application **remembers** information between sessions or requests. This state might include:
+
+- User sessions
+- Database entries
+- Caches
+- Queued messages
+
+### ✅ Characteristics:
+
+- Requires **persistent storage** (disk/database).
+- Each replica might have its **own identity** (e.g., node ID, hostname).
+- Scaling and recovery are more complex.
+- Needs **ordered deployment and termination** in some cases.
+
+### 📦 Examples:
+- MySQL/PostgreSQL databases
+- Redis/Memcached with persistence
+- Kafka queues
+- Elasticsearch
+- Stateful web apps that manage sessions in memory
+
+### 🔁 Analogy:
+Think of a **bank teller** – they keep track of your account history and state as you interact with them.
+
+---
+
+## 📊 Comparison Table
+
+| Feature                 | Stateless                         | Stateful                              |
+|------------------------|-----------------------------------|---------------------------------------|
+| **Stores past data?**  | ❌ No                             | ✅ Yes                                |
+| **Easy to scale?**     | ✅ Yes                            | ❌ More complex                       |
+| **Pod identity needed?**| ❌ No                            | ✅ Often yes                          |
+| **Persistent storage?**| ❌ Not required                   | ✅ Required                           |
+| **Failure recovery**   | ✅ Any instance can restart       | ❌ Needs data restoration             |
+| **Examples**           | Web servers, APIs                 | Databases, queues, session apps       |
+
+---
+
+## 🧠 Kubernetes Perspective
+
+| Component     | Works well for stateless | Works well for stateful |
+|---------------|---------------------------|---------------------------|
+| Deployment    | ✅ Yes                    | ❌ Not ideal              |
+| StatefulSet   | ❌ Not needed             | ✅ Designed for this      |
+| DaemonSet     | ✅ Sometimes              | ✅ Sometimes              |
+
+---
+
+> 🔑 **Key takeaway:**  
+Use **stateless apps** for services that don’t require saved data between requests.  
+Use **stateful apps** when you need to **retain data**, sessions, or identity across restarts and between users.
+
+# 📄 What is a Manifest in Kubernetes?
+
+A **Kubernetes Manifest** is a YAML or JSON configuration file that **describes the desired state** of a Kubernetes object — such as a Pod, Deployment, Service, ConfigMap, etc.
+
+It is the **blueprint** you give to Kubernetes to tell it *what to create and how it should behave*.
+
 # 📦 Kubernetes Workload Components Overview
 
 ## 1. **Pod**
