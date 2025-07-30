@@ -1,4 +1,4 @@
-## Deoployement commands
+## 1. Deoployement commands
 ### Create/update from manifest
 kubectl apply -f deployment.yaml
 
@@ -16,7 +16,7 @@ kubectl rollout undo deploy/web-frontend
 
 ### kubectl command to create/update resources from a manifest or delete it:
 kubectl delete -f my-deployment.yaml
-## Replica commands
+## 2. Replica commands
 ### Create from YAML
 kubectl apply -f replicaset.yaml
 
