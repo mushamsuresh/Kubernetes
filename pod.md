@@ -113,3 +113,25 @@ actions for all the pods. It reduces the laborious process.
 | Docker Command  | Like writing on a whiteboard                       |
 | --------------- | -------------------------------------------------- |
 | Kubernetes YAML | Like maintaining official architectural blueprints |
+
+🧬 Relationship Diagram
+
+Cluster
+├── Node Pool A
+│   ├── Node 1
+│   │   └── Pod(s)
+│   ├── Node 2
+│       └── Pod(s)
+├── Node Pool B
+│   ├── Node 3
+│       └── Pod(s)
+
+🔗 Summary Table
+
+| Component | Description                                   | Contains          |
+| --------- | --------------------------------------------- | ----------------- |
+| Cluster   | Entire Kubernetes environment                 | Node pools, Nodes |
+| Node Pool | Group of similar Nodes                        | Nodes             |
+| Node      | Physical/Virtual machine                      | Pods              |
+| Pod       | Smallest deployable unit (wraps container(s)) | Containers        |
+
