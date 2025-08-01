@@ -242,7 +242,11 @@ Similarly, requests to /service2 are routed to service2.
 - The controller reads the Ingress resource and routes traffic to service1.
 - Similarly, requests to /service2 are routed to service2.
 
-
+## Final Notes
+- Ingress is ideal for managing multiple services under one domain
+- It centralizes routing logic and reduces the number of public IPs
+- Requires an Ingress Controller to function
+- Supports rich features like TLS, rate limiting, and authentication
 
 
 ## 6. **ConfigMap**
