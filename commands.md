@@ -15,5 +15,8 @@
 - List services:   **kubectl get svc**
 - Describe a service:  **kubectl describe svc my-service**
 - Port-forward to access locally:  **kubectl port-forward svc/my-service 8080:80**
-
+## 4. Ingress commands
+- List all ingress resources: **kubectl get ingress**
+- Describe a specific ingress: **kubectl describe ingress <ingress-name>**
+- Apply an ingress YAML: **kubectl apply -f ingress.yaml**
 
