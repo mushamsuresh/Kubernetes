@@ -194,6 +194,56 @@ Since Pods are **ephemeral** (can die and be replaced anytime), a Service ensure
 ## 5. **Ingress**
 - Manages external access to services, typically HTTP.
 - Provides routing rules to expose multiple services under the same IP or domain.
+# Ingress in Kubernetes
+
+## Overview
+
+In Kubernetes, **Ingress** is an API object that manages **external access to services**, typically over **HTTP and HTTPS**. It provides a way to **expose multiple services** under a single IP address or domain name with **routing rules**, **SSL termination**, and **virtual hosting**.
+
+---
+
+## Why Use Ingress?
+
+- Consolidates access to multiple services using a **single external IP**
+- Supports **name-based** and **path-based routing**
+- Allows **SSL/TLS termination** at the Ingress level
+- Offers better **control** and **security** than exposing services directly with NodePort or LoadBalancer
+
+---
+_*How Ingress Works*_
+A user accesses http://myapp.example.com/service1.
+
+DNS resolves to the Ingress Controller's external IP.
+
+The controller reads the Ingress resource and routes traffic to service1.
+
+Similarly, requests to /service2 are routed to service2.
+
+## Ingress vs Service
+
+| Feature              | Service (NodePort/LoadBalancer) | Ingress                      |
+|----------------------|----------------------------------|------------------------------|
+| Type of routing      | Basic (1:1)                     | Advanced (paths, domains)    |
+| Protocols            | TCP/UDP only                    | HTTP/HTTPS only              |
+| SSL termination      | Not supported (needs workaround) | Supported natively           |
+| Cost (Cloud)         | Expensive (each service exposed) | Cost-effective (single IP)   |
+
+---
+
+## Ingress Components
+
+- **Ingress Resource**: YAML definition that contains routing rules
+- **Ingress Controller**: Actual implementation (e.g., NGINX, Traefik) that watches Ingress resources and routes traffic accordingly
+
+---
+## *How Ingress Works*_
+- A user accesses http://myapp.example.com/service1.
+- DNS resolves to the Ingress Controller's external IP.
+- The controller reads the Ingress resource and routes traffic to service1.
+- Similarly, requests to /service2 are routed to service2.
+
+
+
 
 ## 6. **ConfigMap**
 - Used to store configuration data as key-value pairs.
