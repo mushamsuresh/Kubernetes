@@ -92,7 +92,29 @@ It is the **blueprint** you give to Kubernetes to tell it *what to create and ho
 ## 1. **Pod**
 - The smallest and simplest unit in the Kubernetes object model.
 - Represents one or more containers that share storage, network, and a specification for how to run the containers.
+**How pod is different from container and deployment**
+📌 1. What is a Container?
+A container (like Docker) packages an application and its dependencies, runs isolated processes, and is the core unit of deployment in traditional DevOps.
+📦 What is a Pod in Kubernetes?
+A Pod is a Kubernetes abstraction that wraps one or more containers together with some additional features.
 
+📌 Think of a Pod as:
+"A container + extras (network + storage + metadata)
+💡 Think: docker run nginx
+
+🧃 **Pod as a Wrapper Around Container(s)**
+A Pod wraps:
+- One or more containers
+- A shared network namespace (1 IP)
+- Shared storage volumes
+- Metadata: labels, annotations
+- Lifecycle hooks and restart policies
+
+🧑‍🤝‍🧑 **Why Multiple Containers in a Pod?**
+Kubernetes allows sidecar containers in a single Pod (e.g., logging agent + main app).
+
+📍 Example use:
+- nginx (main container) + fluentd (log sidecar) in one Pod.
 ## 2. **Deployment**
 - Manages ReplicaSets and Pods to ensure a specified number of Pods are running.
 - Supports rolling updates, rollbacks, and declarative updates.
