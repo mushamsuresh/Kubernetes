@@ -96,10 +96,10 @@ It is the **blueprint** you give to Kubernetes to tell it *what to create and ho
 📌 1. What is a Container?
 A container (like Docker) packages an application and its dependencies, runs isolated processes, and is the core unit of deployment in traditional DevOps.
 📦 What is a Pod in Kubernetes?
-A Pod is a Kubernetes abstraction that wraps one or more containers together with some additional features.
+- A Pod is a Kubernetes abstraction that wraps one or more containers together with some additional features.
 
 📌 Think of a Pod as:
-"A container + extras (network + storage + metadata)
+- "A container + extras (network + storage + metadata)
 💡 Think: docker run nginx
 
 🧃 **Pod as a Wrapper Around Container(s)**
