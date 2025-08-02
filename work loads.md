@@ -94,7 +94,7 @@ It is the **blueprint** you give to Kubernetes to tell it *what to create and ho
 - Represents one or more containers that share storage, network, and a specification for how to run the containers.
 **How pod is different from container and deployment**
 📌 1. What is a Container?
-A container (like Docker) packages an application and its dependencies, runs isolated processes, and is the core unit of deployment in traditional DevOps.
+- A container (like Docker) packages an application and its dependencies, runs isolated processes, and is the core unit of deployment in traditional DevOps.
 📦 What is a Pod in Kubernetes?
 - A Pod is a Kubernetes abstraction that wraps one or more containers together with some additional features.
 
@@ -111,7 +111,7 @@ A Pod wraps:
 - Lifecycle hooks and restart policies
 
 🧑‍🤝‍🧑 **Why Multiple Containers in a Pod?**
-Kubernetes allows sidecar containers in a single Pod (e.g., logging agent + main app).
+- Kubernetes allows sidecar containers in a single Pod (e.g., logging agent + main app).
 
 📍 Example use:
 - nginx (main container) + fluentd (log sidecar) in one Pod.
