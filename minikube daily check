@@ -1,0 +1,6 @@
+Minikube restart daily
+
+minikube update-context
+minikube stop
+minikube start
+minikube status
