@@ -224,7 +224,7 @@ In Kubernetes, **Ingress** is an API object that manages **external access to se
 
 ## Why Use Ingress?
 
-# 🔹 Why Enable an Ingress Controller?
+## 🔹 Why Enable an Ingress Controller?
 
 ## a. Single Entry Point
 - **Without Ingress**: each service you want external access to needs a `LoadBalancer` or `NodePort`.  
