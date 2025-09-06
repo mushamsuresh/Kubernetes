@@ -256,7 +256,7 @@ Similarly, requests to /service2 are routed to service2.
 
 - **Ingress Resource**: YAML definition that contains routing rules
 - **Ingress Controller**: Actual implementation (e.g., NGINX, Traefik) that watches Ingress resources and routes traffic accordingly
-
+- minikube addons enable ingress
 ---
 ## *How Ingress Works*_
 - A user accesses http://myapp.example.com/service1.
