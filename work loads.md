@@ -322,6 +322,48 @@ Similarly, requests to /service2 are routed to service2.
 ## 8. **Namespace**
 - Provides a mechanism for isolating groups of resources within a single cluster.
 - Useful for separating environments (dev, staging, prod) or teams.
+# 🌐 Kubernetes Namespace
+## 🔹 What is a Namespace?
+- A **Namespace** in Kubernetes is a **logical partition** inside a cluster.  
+- It allows you to group and isolate resources (pods, services, deployments, etc.).  
+- Think of it like creating **separate “folders”** within the cluster to organize workloads.
+
+By default, Kubernetes provides a few namespaces:
+- `default` → where resources go if you don’t specify a namespace.
+- `kube-system` → for Kubernetes system components.
+- `kube-public` → for public, cluster-wide readable data.
+- `kube-node-lease` → for node heartbeats.
+
+---
+## 🔹 Why Do We Need Namespaces?
+
+### 1. **Resource Isolation**
+- Different teams or applications can run in the **same cluster** without interfering.  
+- Example: `dev`, `staging`, `prod` namespaces.
+
+### 2. **Avoid Naming Conflicts**
+- Resources must have unique names *within a namespace*, not across the entire cluster.  
+- Example: You can have:
+  - `backend` service in `dev` namespace.
+  - `backend` service in `prod` namespace.  
+
+### 3. **Access Control (RBAC)**
+- You can assign **Role-Based Access Control (RBAC)** per namespace.  
+- Example: Dev team only has access to `dev` namespace, not `prod`.
+
+### 4. **Resource Quotas**
+- You can enforce **CPU/memory quotas** per namespace.  
+- Prevents one team/app from consuming all cluster resources.
+
+### 5. **Organizational Clarity**
+- Easier to manage multiple microservices, environments, and projects in a shared cluster.
+
+---
+
+## 🔹 Example Commands
+- **kubectl create namespace myapp**   - *This is to create a namespace*
+- **kubectl apply -f backend-deployment.yaml -n myapp**  - *Deploy a Resource into a Namespace*
+- **kubectl config set-context --current --namespace=myapp**  - *Switch Default Namespace in Context*
 
 ## 9. **PersistentVolume (PV)**
 - A piece of storage in the cluster provisioned by an administrator or dynamically provisioned using StorageClasses.
