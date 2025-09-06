@@ -226,7 +226,7 @@ In Kubernetes, **Ingress** is an API object that manages **external access to se
 
 # 🔹 Why Enable an Ingress Controller?
 
-## 1. Single Entry Point
+## a. Single Entry Point
 - **Without Ingress**: each service you want external access to needs a `LoadBalancer` or `NodePort`.  
   Example:  
   - Frontend: `http://<EXTERNAL-IP>:30001`  
@@ -239,7 +239,7 @@ In Kubernetes, **Ingress** is an API object that manages **external access to se
 
 ---
 
-## 2. Path/Host-based Routing
+## b. Path/Host-based Routing
 Ingress lets you define **smart rules**:  
 - `/api` → backend  
 - `/` → frontend  
@@ -249,21 +249,21 @@ This makes it easy to organize multiple apps behind one domain.
 
 ---
 
-## 3. TLS/SSL Termination
+## c. TLS/SSL Termination
 - Ingress controllers can manage **HTTPS (TLS certificates)**.  
 - Often integrated with **Cert-Manager + Let’s Encrypt** for auto-renewal.  
 - Without Ingress, you’d need to configure TLS manually for every service.  
 
 ---
 
-## 4. Load Balancing & Advanced Features
+## d. Load Balancing & Advanced Features
 Ingress provides:  
 - Built-in **load balancing** across service pods.  
 - Support for **URL rewrites, redirects, authentication, rate limiting, WAF rules** (depending on the controller, e.g., NGINX Ingress).  
 
 ---
 
-## 5. Cost & Simplicity
+## e. Cost & Simplicity
 - **On Cloud (AWS/GCP/Azure):**  
   - Without Ingress → every service needs its own LoadBalancer → multiple cloud load balancers = higher cost.  
   - With Ingress → **one load balancer** in front of everything.  
@@ -322,7 +322,7 @@ Similarly, requests to /service2 are routed to service2.
 ## 8. **Namespace**
 - Provides a mechanism for isolating groups of resources within a single cluster.
 - Useful for separating environments (dev, staging, prod) or teams.
-# 🌐 Kubernetes Namespace
+## 🌐 Kubernetes Namespace
 ## 🔹 What is a Namespace?
 - A **Namespace** in Kubernetes is a **logical partition** inside a cluster.  
 - It allows you to group and isolate resources (pods, services, deployments, etc.).  
@@ -337,25 +337,25 @@ By default, Kubernetes provides a few namespaces:
 ---
 ## 🔹 Why Do We Need Namespaces?
 
-### 1. **Resource Isolation**
+### a. **Resource Isolation**
 - Different teams or applications can run in the **same cluster** without interfering.  
 - Example: `dev`, `staging`, `prod` namespaces.
 
-### 2. **Avoid Naming Conflicts**
+### b. **Avoid Naming Conflicts**
 - Resources must have unique names *within a namespace*, not across the entire cluster.  
 - Example: You can have:
   - `backend` service in `dev` namespace.
   - `backend` service in `prod` namespace.  
 
-### 3. **Access Control (RBAC)**
+### c. **Access Control (RBAC)**
 - You can assign **Role-Based Access Control (RBAC)** per namespace.  
 - Example: Dev team only has access to `dev` namespace, not `prod`.
 
-### 4. **Resource Quotas**
+### d. **Resource Quotas**
 - You can enforce **CPU/memory quotas** per namespace.  
 - Prevents one team/app from consuming all cluster resources.
 
-### 5. **Organizational Clarity**
+### e. **Organizational Clarity**
 - Easier to manage multiple microservices, environments, and projects in a shared cluster.
 
 ---
