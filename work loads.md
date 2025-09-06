@@ -212,11 +212,9 @@ Since Pods are **ephemeral** (can die and be replaced anytime), a Service ensure
 - _Frontend calls backend:_ A frontend Deployment talks to a backend Service.
 - _Expose app to browser:_ Use a NodePort or LoadBalancer Service.
 - _Microservice discovery:_ Services act as the internal DNS system in Kubernetes.
-
-## 5. **Ingress**
 - Manages external access to services, typically HTTP.
 - Provides routing rules to expose multiple services under the same IP or domain.
-# Ingress in Kubernetes
+## 5. **Ingress in Kubernetes**
 
 ## Overview
 
