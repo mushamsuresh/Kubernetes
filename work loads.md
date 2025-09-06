@@ -1,4 +1,4 @@
-# Stateless vs Stateful Applications
+## Stateless vs Stateful Applications
 
 In the context of **Kubernetes**, and more broadly in distributed systems and cloud-native architecture, understanding the difference between **stateless** and **stateful** applications is crucial.
 
@@ -81,13 +81,13 @@ Think of a **bank teller** – they keep track of your account history and state
 Use **stateless apps** for services that don’t require saved data between requests.  
 Use **stateful apps** when you need to **retain data**, sessions, or identity across restarts and between users.
 
-# 📄 What is a Manifest in Kubernetes?
+## 📄 What is a Manifest in Kubernetes?
 
 A **Kubernetes Manifest** is a YAML or JSON configuration file that **describes the desired state** of a Kubernetes object — such as a Pod, Deployment, Service, ConfigMap, etc.
 
 It is the **blueprint** you give to Kubernetes to tell it *what to create and how it should behave*.
 
-# 📦 Kubernetes Workload Components Overview
+## 📦 Kubernetes Workload Components Overview
 
 ## 1. **Pod**
 - The smallest and simplest unit in the Kubernetes object model.
@@ -318,6 +318,64 @@ Similarly, requests to /service2 are routed to service2.
 ## 7. **Secret**
 - Stores sensitive data such as passwords, OAuth tokens, and SSH keys.
 - Data is base64 encoded and more secure than ConfigMaps.
+## 🔑 Kubernetes Secret
+
+## 🔹 What is a Secret?
+- A **Secret** in Kubernetes is an object used to **store sensitive information** securely.  
+- Examples of data stored in a Secret:
+  - Passwords  
+  - API keys  
+  - TLS certificates  
+  - Database connection strings  
+  - Docker registry credentials  
+
+Unlike ConfigMaps (which store non-sensitive data), **Secrets are intended for confidential data**.
+
+---
+
+## 🔹 Why Do We Use Secrets?
+
+### a. **Security**
+- Keeps sensitive data **out of plain YAML files**.  
+- Stored in **Base64-encoded format** (not encryption by default, but can be encrypted at rest with Kubernetes features).
+
+### b. **Decoupling Configuration**
+- Application code doesn’t need to embed secrets.  
+- Secrets are injected at runtime via:
+  - **Environment variables**  
+  - **Mounted volumes**  
+
+### c. **Flexibility**
+- The same application image can be deployed to different environments with different credentials by just changing the Secret.
+
+### d. **Integration**
+- Used for things like:
+  - Authenticating with a **Docker registry** (e.g., GitHub Container Registry).  
+  - Providing **TLS certificates** to Ingress.  
+  - Storing database credentials securely.
+
+---
+
+## 🔹 Types of Secrets
+1. **Opaque** → Default type, for generic key-value pairs (e.g., API_KEY).  
+2. **docker-registry** → Stores Docker credentials for pulling private images.  
+3. **tls** → Stores TLS certificates (`tls.crt` + `tls.key`).  
+4. **service-account-token** → Automatically created for service accounts.
+
+---
+
+## 🔹 Example Usage
+### Create a Secret (Generic)
+
+**kubectl create secret generic db-secret \
+  --from-literal=username=admin \
+  --from-literal=password=MyPass123**
+## Create a Secret (Docker Registry)
+**kubectl create secret docker-registry ghcr-secret \
+  --docker-server=ghcr.io \
+  --docker-username=USERNAME \
+  --docker-password=YOUR_GHCR_PAT \
+  --docker-email=you@example.com**
 
 ## 8. **Namespace**
 - Provides a mechanism for isolating groups of resources within a single cluster.
