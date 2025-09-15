@@ -39,7 +39,7 @@ User → kubectl → API Server (Master)
           Sends instructions to → Worker Nodes
                       ↓
               Worker runs Pods via Kubelet
-# 🐳 What is a Container Runtime?
+### 🐳 What is a Container Runtime?
 
 A **container runtime** is the low-level software responsible for running containers on a host system.
 
@@ -51,14 +51,14 @@ It:
 
 ---
 
-## ⚙️ Container Runtime in Kubernetes
+### ⚙️ Container Runtime in Kubernetes
 
 In Kubernetes, the container runtime is used by the **worker nodes** to run your pods.  
 The component responsible for this communication is the **kubelet**.
 
 ---
 
-## 🔧 Common Container Runtimes
+### 🔧 Common Container Runtimes
 
 | Runtime      | Description                                                                 |
 |--------------|-----------------------------------------------------------------------------|
@@ -71,17 +71,17 @@ The component responsible for this communication is the **kubelet**.
 
 ---
 
-## 📌 Runtime Flow in Kubernetes
+### 📌 Runtime Flow in Kubernetes
 
 Pod Spec → Kubelet → CRI (Container Runtime Interface) → Container Runtime (e.g., containerd) → runc → Container
 
-# 🧠 Kubernetes Master Node Components (Control Plane)
+### 🧠 Kubernetes Master Node Components (Control Plane)
 
 The **Master Node**, also called the **Control Plane**, is responsible for managing the entire Kubernetes cluster. It makes global decisions (e.g., scheduling), maintains cluster state, and handles communication between components.
 
 ---
 
-## 🧩 Core Components of Master Node
+### 🧩 Core Components of Master Node
 
 ---
 
@@ -127,7 +127,7 @@ The **Master Node**, also called the **Control Plane**, is responsible for manag
 
 ---
 
-## 📝 Summary Table
+### 📝 Summary Table
 
 | Component             | Purpose                                                   |
 |-----------------------|-----------------------------------------------------------|
@@ -162,7 +162,7 @@ In a Kubernetes **worker node**, three key components enable the node to run and
 
 ---
 
-## 2. 🔌 Kubelet
+### 2. 🔌 Kubelet
 
 ### ✅ What it does:
 - Main **node agent** on each worker node
@@ -192,7 +192,7 @@ In a Kubernetes **worker node**, three key components enable the node to run and
 
 ---
 
-## 📝 Summary Table
+### 📝 Summary Table
 
 | Component         | Role                                        | Runs On     | Key Functionality                                      |
 |------------------|---------------------------------------------|-------------|--------------------------------------------------------|
@@ -202,13 +202,13 @@ In a Kubernetes **worker node**, three key components enable the node to run and
 
 ---
 
-# 🧠☸️ Kubernetes Master vs Worker Nodes — Real-Life Analogy
+### 🧠☸️ Kubernetes Master vs Worker Nodes — Real-Life Analogy
 
 Understanding Kubernetes components can be easier with a relatable analogy.
 
 ---
 
-## 🏗️ Analogy: A Smart Factory
+### 🏗️ Analogy: A Smart Factory
 
 Imagine a **smart factory** that builds and ships products. Here's how the **Kubernetes architecture** maps to it:
 
@@ -224,7 +224,7 @@ Imagine a **smart factory** that builds and ships products. Here's how the **Kub
 
 ---
 
-## 📊 Summary Table
+### 📊 Summary Table
 
 | Role               | Kubernetes Component     | Factory Analogy                  |
 |--------------------|--------------------------|----------------------------------|
@@ -237,6 +237,3 @@ Imagine a **smart factory** that builds and ships products. Here's how the **Kub
 | **Kube-Proxy**      | Networking                | Delivery traffic controller      |
 
 ---
-
-
-## IN kubernetes container is called pod
