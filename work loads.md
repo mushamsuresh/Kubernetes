@@ -1,4 +1,4 @@
-## Stateless vs Stateful Applications
+### Stateless vs Stateful Applications
 
 In the context of **Kubernetes**, and more broadly in distributed systems and cloud-native architecture, understanding the difference between **stateless** and **stateful** applications is crucial.
 
@@ -54,7 +54,7 @@ Think of a **bank teller** – they keep track of your account history and state
 
 ---
 
-## 📊 Comparison Table
+### 📊 Comparison Table
 
 | Feature                 | Stateless                         | Stateful                              |
 |------------------------|-----------------------------------|---------------------------------------|
@@ -67,7 +67,7 @@ Think of a **bank teller** – they keep track of your account history and state
 
 ---
 
-## 🧠 Kubernetes Perspective
+### 🧠 Kubernetes Perspective
 
 | Component     | Works well for stateless | Works well for stateful |
 |---------------|---------------------------|---------------------------|
@@ -81,15 +81,15 @@ Think of a **bank teller** – they keep track of your account history and state
 Use **stateless apps** for services that don’t require saved data between requests.  
 Use **stateful apps** when you need to **retain data**, sessions, or identity across restarts and between users.
 
-## 📄 What is a Manifest in Kubernetes?
+### 📄 What is a Manifest in Kubernetes?
 
 A **Kubernetes Manifest** is a YAML or JSON configuration file that **describes the desired state** of a Kubernetes object — such as a Pod, Deployment, Service, ConfigMap, etc.
 
 It is the **blueprint** you give to Kubernetes to tell it *what to create and how it should behave*.
 
-## 📦 Kubernetes Workload Components Overview
+### 📦 Kubernetes Workload Components Overview
 
-## 1. **Pod**
+### 1. **Pod**
 - The smallest and simplest unit in the Kubernetes object model.
 - Represents one or more containers that share storage, network, and a specification for how to run the containers.
 **How pod is different from container and deployment**
@@ -115,14 +115,14 @@ A Pod wraps:
 
 📍 Example use:
 - nginx (main container) + fluentd (log sidecar) in one Pod.
-## 2. **Deployment**
+### 2. **Deployment**
 - Manages ReplicaSets and Pods to ensure a specified number of Pods are running.
 - Supports rolling updates, rollbacks, and declarative updates.
 
 A **Deployment** is a higher‑level controller in Kubernetes that manages a group of identical Pods through an underlying **ReplicaSet**. Think of it as a “blueprint + traffic manager” for stateless applications that need easy updates, rollbacks, and automatic healing.
 
 ---
-## Why use a Deployment?
+### Why use a Deployment?
 
 - **Declarative updates** – You tell Kubernetes the *desired* state (image version, replica count, labels, etc.). Kubernetes does the work to reach and maintain that state.
 - **Rolling upgrades & rollbacks** – Zero‑downtime image or configuration changes with the ability to revert instantly if something goes wrong.
@@ -132,7 +132,7 @@ A **Deployment** is a higher‑level controller in Kubernetes that manages a gro
 
 ---
 
-## How it works (simplified flow)
+### How it works (simplified flow)
 
 1. **You apply a Deployment manifest.**
 2. The Deployment creates (or updates) a **ReplicaSet**.
@@ -143,7 +143,7 @@ A **Deployment** is a higher‑level controller in Kubernetes that manages a gro
    - If health checks start failing, Kubernetes can pause or roll back.
 _In short_: a Deployment lets you declare what you want running, and Kubernetes continually makes sure it happens—while giving you safe, controllable updates and rollbacks along the way.
 
-## 3. **ReplicaSet**
+### 3. **ReplicaSet**
 - Maintains a stable set of replica Pods running at any given time.
 - Automatically replaces failed Pods to ensure availability.
 
@@ -153,7 +153,7 @@ It is mostly used **indirectly through Deployments**, but can also be created an
 
 ---
 
-## 🎯 Purpose of a ReplicaSet
+### 🎯 Purpose of a ReplicaSet
 
 - **Maintain availability**: If a Pod fails or is deleted, the ReplicaSet automatically replaces it.
 - **Ensure replica count**: If there are fewer Pods than desired, it creates new ones; if there are too many, it deletes extras.
@@ -173,7 +173,7 @@ It is mostly used **indirectly through Deployments**, but can also be created an
 🧠 Analogy
 Imagine a photocopier that ensures there are always 3 copies of a document. If someone takes one away, the copier prints a new one. That’s your ReplicaSet.
 
-## 4. **Service**
+### 4. **Service**
 - An abstraction that defines a logical set of Pods and a policy by which to access them.
 - Types include ClusterIP, NodePort, LoadBalancer, and ExternalName.
 
@@ -183,7 +183,7 @@ Since Pods are **ephemeral** (can die and be replaced anytime), a Service ensure
 
 ---
 
-## 🚀 Why Do We Need a Service?
+### 🚀 Why Do We Need a Service?
 
 - Pods have **dynamic IPs** — they change after restarts.
 - Services provide a **static IP or DNS name**.
@@ -192,7 +192,7 @@ Since Pods are **ephemeral** (can die and be replaced anytime), a Service ensure
 
 ---
 
-## 🧱 Basic Service Types
+### 🧱 Basic Service Types
 
 | Type            | Purpose                                              | Accessible From          |
 |-----------------|------------------------------------------------------|--------------------------|
@@ -214,19 +214,19 @@ Since Pods are **ephemeral** (can die and be replaced anytime), a Service ensure
 - _Microservice discovery:_ Services act as the internal DNS system in Kubernetes.
 - Manages external access to services, typically HTTP.
 - Provides routing rules to expose multiple services under the same IP or domain.
-## 5. **Ingress in Kubernetes**
+### 5. **Ingress in Kubernetes**
 
-## Overview
+### Overview
 
 In Kubernetes, **Ingress** is an API object that manages **external access to services**, typically over **HTTP and HTTPS**. It provides a way to **expose multiple services** under a single IP address or domain name with **routing rules**, **SSL termination**, and **virtual hosting**.
 
 ---
 
-## Why Use Ingress?
+### Why Use Ingress?
 
-## 🔹 Why Enable an Ingress Controller?
+### 🔹 Why Enable an Ingress Controller?
 
-## a. Single Entry Point
+### a. Single Entry Point
 - **Without Ingress**: each service you want external access to needs a `LoadBalancer` or `NodePort`.  
   Example:  
   - Frontend: `http://<EXTERNAL-IP>:30001`  
@@ -239,7 +239,7 @@ In Kubernetes, **Ingress** is an API object that manages **external access to se
 
 ---
 
-## b. Path/Host-based Routing
+### b. Path/Host-based Routing
 Ingress lets you define **smart rules**:  
 - `/api` → backend  
 - `/` → frontend  
@@ -249,21 +249,21 @@ This makes it easy to organize multiple apps behind one domain.
 
 ---
 
-## c. TLS/SSL Termination
+### c. TLS/SSL Termination
 - Ingress controllers can manage **HTTPS (TLS certificates)**.  
 - Often integrated with **Cert-Manager + Let’s Encrypt** for auto-renewal.  
 - Without Ingress, you’d need to configure TLS manually for every service.  
 
 ---
 
-## d. Load Balancing & Advanced Features
+### d. Load Balancing & Advanced Features
 Ingress provides:  
 - Built-in **load balancing** across service pods.  
 - Support for **URL rewrites, redirects, authentication, rate limiting, WAF rules** (depending on the controller, e.g., NGINX Ingress).  
 
 ---
 
-## e. Cost & Simplicity
+### e. Cost & Simplicity
 - **On Cloud (AWS/GCP/Azure):**  
   - Without Ingress → every service needs its own LoadBalancer → multiple cloud load balancers = higher cost.  
   - With Ingress → **one load balancer** in front of everything.  
@@ -281,7 +281,7 @@ The controller reads the Ingress resource and routes traffic to service1.
 
 Similarly, requests to /service2 are routed to service2.
 
-## Ingress vs Service
+### Ingress vs Service
 
 | Feature              | Service (NodePort/LoadBalancer) | Ingress                      |
 |----------------------|----------------------------------|------------------------------|
@@ -292,35 +292,35 @@ Similarly, requests to /service2 are routed to service2.
 
 ---
 
-## Ingress Components
+### Ingress Components
 
 - **Ingress Resource**: YAML definition that contains routing rules
 - **Ingress Controller**: Actual implementation (e.g., NGINX, Traefik) that watches Ingress resources and routes traffic accordingly
 - minikube addons enable ingress
 ---
-## *How Ingress Works*_
+### *How Ingress Works*_
 - A user accesses http://myapp.example.com/service1.
 - DNS resolves to the Ingress Controller's external IP.
 - The controller reads the Ingress resource and routes traffic to service1.
 - Similarly, requests to /service2 are routed to service2.
 
-## Final Notes
+### Final Notes
 - Ingress is ideal for managing multiple services under one domain
 - It centralizes routing logic and reduces the number of public IPs
 - Requires an Ingress Controller to function
 - Supports rich features like TLS, rate limiting, and authentication
 
 
-## 6. **ConfigMap**
+### 6. **ConfigMap**
 - Used to store configuration data as key-value pairs.
 - Allows you to decouple configuration artifacts from application code.
 
-## 7. **Secret**
+### 7. **Secret**
 - Stores sensitive data such as passwords, OAuth tokens, and SSH keys.
 - Data is base64 encoded and more secure than ConfigMaps.
-## 🔑 Kubernetes Secret
+### 🔑 Kubernetes Secret
 
-## 🔹 What is a Secret?
+### 🔹 What is a Secret?
 - A **Secret** in Kubernetes is an object used to **store sensitive information** securely.  
 - Examples of data stored in a Secret:
   - Passwords  
@@ -333,7 +333,7 @@ Unlike ConfigMaps (which store non-sensitive data), **Secrets are intended for c
 
 ---
 
-## 🔹 Why Do We Use Secrets?
+### 🔹 Why Do We Use Secrets?
 
 ### a. **Security**
 - Keeps sensitive data **out of plain YAML files**.  
@@ -356,7 +356,7 @@ Unlike ConfigMaps (which store non-sensitive data), **Secrets are intended for c
 
 ---
 
-## 🔹 Types of Secrets
+### 🔹 Types of Secrets
 1. **Opaque** → Default type, for generic key-value pairs (e.g., API_KEY).  
 2. **docker-registry** → Stores Docker credentials for pulling private images.  
 3. **tls** → Stores TLS certificates (`tls.crt` + `tls.key`).  
@@ -364,24 +364,24 @@ Unlike ConfigMaps (which store non-sensitive data), **Secrets are intended for c
 
 ---
 
-## 🔹 Example Usage
+### 🔹 Example Usage
 ### Create a Secret (Generic)
 
 **kubectl create secret generic db-secret \
   --from-literal=username=admin \
   --from-literal=password=MyPass123**
-## Create a Secret (Docker Registry)
+### Create a Secret (Docker Registry)
 **kubectl create secret docker-registry ghcr-secret \
   --docker-server=ghcr.io \
   --docker-username=USERNAME \
   --docker-password=YOUR_GHCR_PAT \
   --docker-email=you@example.com**
 
-## 8. **Namespace**
+### 8. **Namespace**
 - Provides a mechanism for isolating groups of resources within a single cluster.
 - Useful for separating environments (dev, staging, prod) or teams.
-## 🌐 Kubernetes Namespace
-## 🔹 What is a Namespace?
+### 🌐 Kubernetes Namespace
+### 🔹 What is a Namespace?
 - A **Namespace** in Kubernetes is a **logical partition** inside a cluster.  
 - It allows you to group and isolate resources (pods, services, deployments, etc.).  
 - Think of it like creating **separate “folders”** within the cluster to organize workloads.
@@ -393,7 +393,7 @@ By default, Kubernetes provides a few namespaces:
 - `kube-node-lease` → for node heartbeats.
 
 ---
-## 🔹 Why Do We Need Namespaces?
+### 🔹 Why Do We Need Namespaces?
 
 ### a. **Resource Isolation**
 - Different teams or applications can run in the **same cluster** without interfering.  
@@ -418,32 +418,32 @@ By default, Kubernetes provides a few namespaces:
 
 ---
 
-## 🔹 Example Commands
+### 🔹 Example Commands
 - **kubectl create namespace myapp**   - *This is to create a namespace*
 - **kubectl apply -f backend-deployment.yaml -n myapp**  - *Deploy a Resource into a Namespace*
 - **kubectl config set-context --current --namespace=myapp**  - *Switch Default Namespace in Context*
 
-## 9. **PersistentVolume (PV)**
+### 9. **PersistentVolume (PV)**
 - A piece of storage in the cluster provisioned by an administrator or dynamically provisioned using StorageClasses.
 - Abstracts away details of how storage is provided.
 
-## 10. **PersistentVolumeClaim (PVC)**
+### 10. **PersistentVolumeClaim (PVC)**
 - A request for storage by a user.
 - Binds to a PersistentVolume and allows Pods to use it as durable storage.
 
-## 11. **StatefulSet**
+### 11. **StatefulSet**
 - Manages stateful applications.
 - Maintains sticky identities for each Pod and provides stable network and persistent storage.
 
-## 12. **DaemonSet**
+### 12. **DaemonSet**
 - Ensures a copy of a Pod runs on all or selected nodes.
 - Commonly used for cluster-wide services like log collection and node monitoring.
 
-## 13. **Job**
+### 13. **Job**
 - Creates one or more Pods and ensures they complete successfully.
 - Used for batch processes and finite tasks.
 
-## 14. **CronJob**
+### 14. **CronJob**
 - A scheduled Job, runs on a recurring basis based on a cron expression.
 - Used for tasks like backups, reports, or automated maintenance.
 
