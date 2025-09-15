@@ -1,10 +1,9 @@
-# 📦 What Are Distributions in Open Source Platforms?
+### 📦 What Are Distributions in Open Source Platforms?
 
 In open-source platforms, a **distribution (or distro)** is a customized version of the core software that includes additional tools, configurations, and support tailored to specific needs or environments. These distros are usually built on top of an upstream open-source project.
 
 ---
-
-## 🐧 Example: Linux Distributions
+### 🐧 Example: Linux Distributions
 
 The **Linux kernel** is the core of the Linux operating system. Various organizations and communities build **Linux distributions** on top of this kernel by adding:
 
@@ -25,7 +24,7 @@ The **Linux kernel** is the core of the Linux operating system. Various organiza
 
 ---
 
-## ☸️ Example: Kubernetes Distributions
+### ☸️ Example: Kubernetes Distributions
 
 Kubernetes itself is an open-source **container orchestration platform**. Various companies and organizations provide their own **Kubernetes distributions** with:
 
@@ -49,16 +48,16 @@ Kubernetes itself is an open-source **container orchestration platform**. Variou
 
 ---
 
-## 🧠 Why Use Distributions?
+### 🧠 Why Use Distributions?
 
 - Faster setup and easier maintenance
 - Enhanced security and monitoring tools
 - Cloud or edge optimized
 - Enterprise-level support
 
-# 🤔 Is `kubectl` the Same as PowerShell for Kubernetes?
+### 🤔 Is `kubectl` the Same as PowerShell for Kubernetes?
 
-## ❌ Not Exactly — But It's a Useful Analogy
+### ❌ Not Exactly — But It's a Useful Analogy
 
 `kubectl` is **not** the same as PowerShell, but it **plays a similar role** within the Kubernetes ecosystem as PowerShell does in Windows:
 
@@ -66,7 +65,7 @@ Kubernetes itself is an open-source **container orchestration platform**. Variou
 
 ---
 
-## 🔹 What is `kubectl`?
+### 🔹 What is `kubectl`?
 
 - `kubectl` stands for **Kubernetes Control**
 - It is the **command-line interface** (CLI) to **manage and interact with Kubernetes clusters**
