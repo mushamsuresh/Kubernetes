@@ -1,22 +1,22 @@
-# 🐳 Why We Use Pods Instead of Just Containers in Kubernetes
+### 🐳 Why We Use Pods Instead of Just Containers in Kubernetes
 
-## ❓ Question
+### ❓ Question
 **Why do we have to upload or define a file as a _Pod_ rather than directly as a _Container_ in Kubernetes?**
 
 ---
 
-## 🔑 Core Concept
+### 🔑 Core Concept
 
 In **Kubernetes**, the smallest deployable unit is **not a container**, but a **Pod**.
 
 > A **Pod** is a wrapper around one or more containers, and it adds the orchestration features Kubernetes needs.
 
 ---
-# ☸️ What is a Pod in Kubernetes?
+### ☸️ What is a Pod in Kubernetes?
 
 ---
 
-## 🧩 Definition
+### 🧩 Definition
 
 A **Pod** is the **smallest and simplest unit in the Kubernetes object model** that you can create or deploy.
 
@@ -28,7 +28,7 @@ It can hold:
 
 ---
 
-## 🏗️ Structure of a Pod
+### 🏗️ Structure of a Pod
 
 A Pod includes:
 - One or more containers
@@ -37,7 +37,7 @@ A Pod includes:
 - Metadata and specifications
 
 ---
-## 📦 Difference Between Container and Pod
+### 📦 Difference Between Container and Pod
 
 | Feature             | **Container**                                     | **Pod**                                                             |
 |---------------------|--------------------------------------------------|---------------------------------------------------------------------|
@@ -50,7 +50,7 @@ A Pod includes:
 
 ---
 
-## 🧠 Why Not Just Use a Container?
+### 🧠 Why Not Just Use a Container?
 
 Kubernetes adds logic such as:
 
@@ -64,18 +64,18 @@ These features require metadata and structure — provided by the **Pod** abstra
 
 ---
 
-## 🧱 Real-World Analogy
+### 🧱 Real-World Analogy
 
 - **Container**: Like a single app on your computer.
 - **Pod**: Like a full desktop environment — multiple apps working together (browser, file system, clipboard, etc.)
 
 ---
 
-# 📄 Why Use YAML Files in Kubernetes Instead of Simple Commands?
+### 📄 Why Use YAML Files in Kubernetes Instead of Simple Commands?
 
 ---
 
-## 🐳 Docker: Command-Based Simplicity
+### 🐳 Docker: Command-Based Simplicity
 
 Docker is designed for **single-container, quick tasks**. You can run things instantly with one-liners:
 
